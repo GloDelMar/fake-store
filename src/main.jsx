@@ -7,23 +7,33 @@ import HomePage from './pages/HomePage'
 import { Toaster } from 'sonner'
 import ProductsPage from './pages/ProductsPage'
 import PorductDetailPage from './pages/ProductDetailPage'
+
+import MainLayout from './layouts/MainLayout'
+
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <HomePage />,
+    element: <MainLayout/>,
+    children:[
+      {
+        path: "/",
+        element: <HomePage/>
+      },
+      {
+        path: '/productos',
+        element: <ProductsPage />
+      },
+      {
+        path: '/productos/:id',
+        element: <PorductDetailPage />
+      }
+    ]
   },
   {
     path: '/login',
     element: <LoginPage />,
   },
-  {
-    path: '/productos',
-    element: <ProductsPage />
-  },
-  {
-    path: '/productos/:id',
-    element: <PorductDetailPage />
-  }
+  
 ])
 
 ReactDOM.createRoot(document.getElementById('root')).render(
